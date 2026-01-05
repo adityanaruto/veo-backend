@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import google.generativeai as genai
-import time
+import os
 
 app = FastAPI()
 
@@ -14,9 +14,7 @@ def health_check():
 
 @app.post("/generate-video")
 def generate_video(data: VideoRequest):
-    import os
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
     operation = genai.models.generate_videos(
         model="veo-3.1-generate-preview",
