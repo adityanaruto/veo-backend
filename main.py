@@ -14,7 +14,9 @@ def health_check():
 
 @app.post("/generate-video")
 def generate_video(data: VideoRequest):
-    genai.configure(api_key="REPLACE_WITH_YOUR_API_KEY")
+    import os
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 
     operation = genai.models.generate_videos(
         model="veo-3.1-generate-preview",
